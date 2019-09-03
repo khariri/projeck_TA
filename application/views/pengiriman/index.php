@@ -52,9 +52,12 @@
                                         <tr>
 											<th>No</th>
                                             <th>ID Pengiriman</th>
-											<th>Alamat</th>
-											<th>Status</th>
-                                            <th>Action</th>
+											<th>ID Pemesanan</th>
+											<th>Kurir</th>
+											<th>Penerima</th>
+                                            <th>Alamat Penerima</th>
+											<th>status</th>
+											<th>&nbsp;</th>
                                         </tr>
                                     </thead>                                    
                                     <tbody>
@@ -66,17 +69,24 @@
                                         <tr>
 											<td><?=$no;?></td>
                                             <td><?= $value['id_pengiriman']?></td>
-											<td><?= $value['alamat']?></td>
-											<td><?= $value['status']?></td>
+											<td><?= $value['id_pesanan']?></td>
+											<td><?= $value['nama_kurir'];?></td>
+											<td><?= $value['penerima']?></td>
+											<td><?= $value['alamat_penerima']?></td>
+											<td>
+											<?php
+											if($value['status'] == 'on_process'){
+												$style = "label label-info";
+											}else if($value['status'] == 'delivered'){
+												$style = "label label-success";
+											}else if($value['status'] == 'cancel'){
+												$style = "label label-danger";
+											}
+											?>	
+											<span class="<?= $style;?>"><?= $value['status']?></span>
+											</td>
                                             <td>													
-<!--
-												<a href="<?= site_url()?>/pengiriman/edit_pengiriman/<?= $value['id_pengiriman']?>"><button type="button" class="btn btn-warning btn-xs waves-effect">
-                                    				<i class="material-icons" title="Edit">create</i>
-												</button></a>
--->
-												<a href="#"><button type="button" class="btn btn-danger btn-xs waves-effect" onclick="confirmDel('<?=$value['id_pengiriman'];?>')">
-                                    				<i class="material-icons" title="Delete">delete</i>
-												</button></a>
+												<a href="<?= site_url()?>/pemesanan/preview_pesanan/<?= $value['id_pesanan']?>"><button type="button" class="btn btn-success waves-effect">Liat Detail</button></a>
 											</td>
                                         </tr>
 										<?php

@@ -38,7 +38,7 @@ class Report extends CI_Controller {
 		$tgl_awal = $this->input->get('tgl_awal');
 		$tgl_akhir = $this->input->get('tgl_akhir');
 		if($tgl_awal != "" && $tgl_akhir != ""){
-			$data['data'] = $this->Report_act->report_transaksi();
+			$data['data'] = $this->Report_act->report_transaksi($tgl_awal,$tgl_akhir)->result_array();
 		}		
 		$data['action'] = site_url().'/report/transaksi';
 		$this->content = $this->load->view('laporan/lap_transaksi',$data,true);

@@ -113,19 +113,15 @@
     });
 </script>
 <!-- AUTOCOMPLETE Core Js -->
-<!--	<script src="<?=base_url()?>assets/js/jquery-3.3.1.js"></script>-->
-    <script src="<?=base_url()?>assets/js/jquery-ui.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-
-		    $('#id_produk').autocomplete({
-                source: "<?php echo site_url('autocomplete/get_autocomplete_produk');?>",
-     
-                select: function (event, ui) {
-                    $('[name="id_produk"]').val(ui.item.id_produk); 
-                    $('[name="nama_produk"]').val(ui.item.nama_produk); 
-                }
-            });
-
-		});
-	</script>
+<script src="<?=base_url()?>assets/js/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+	   var pemrograman = [
+		<?= $list_produk ?>
+		];
+	    $( "#id_produk" ).autocomplete({
+		source: pemrograman
+	    });	
+	});
+</script>

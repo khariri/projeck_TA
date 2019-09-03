@@ -125,8 +125,8 @@
                                 </div>
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-										<input type="submit" class="btn btn-primary m-t-15 waves-effect" value="Save">&nbsp;&nbsp;
-										<a href="<?=site_url()?>/admin/v_admin"><button type="button" class="btn btn-default m-t-15 waves-effect">Cancel</button></a>
+										<input type="submit" class="btn btn-lg btn-primary m-t-15 waves-effect" value="Save">&nbsp;&nbsp;
+										<a href="<?=site_url()?>/admin/v_admin"><button type="button" class="btn btn-lg btn-default m-t-15 waves-effect">Cancel</button></a>
                                     </div>
                                 </div>
                             </form>

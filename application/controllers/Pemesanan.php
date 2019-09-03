@@ -9,10 +9,10 @@ class Pemesanan extends CI_Controller {
 		$this->load->model('Pemesanan_act');
 		$this->load->model('BuatKode_Act');
 		$this->load->model('Produk_act');
+		$this->load->model('Kurir_act');
+		$this->load->model('Pengiriman_act');
 	}
-	public function index()
-	{
-//		$this->MainAdmin->get_index();
+	public function index(){
 		if($this->session->userdata('LOGGED')){
 			$this->MainAdmin->get_index();
 		}else{
@@ -56,8 +56,7 @@ class Pemesanan extends CI_Controller {
 		$data['action_dtl'] = site_url().'/pemesanan/store_dtl_pemesanan';
 		$this->content = $this->load->view('pemesanan/form',$data,true);
 		$this->index();
-	}
-	
+	}	
 	function store_pemesanan(){
 		$kode_pemesanan = $this->input->post('id_pemesanan');
 //		$this->form_validation->set_rules('data[email]','Email','trim|required|is_unique[tb_sekolah.email]');
@@ -84,7 +83,6 @@ class Pemesanan extends CI_Controller {
 		$this->pemesanan_act->process_delete($id);
 		redirect('pemesanan/v_pemesanan');
 	}
-	
 	function store_dtl_pemesanan(){
 		$id_pesanan = $this->input->post('id_pesanan');
 		$id_produk = $this->input->post('id_produk');
@@ -101,11 +99,40 @@ class Pemesanan extends CI_Controller {
 		print_r($data);
 		$query = $this->db->insert('tb_pemesanandetail',$data);
 		redirect('pemesanan/get_pemesanan/'.$id_pesanan);		
-	}
-	
+	}	
 	function delete_dtl_pemesanan($id_pesanan,$id){
 		$query = $this->db->delete('tb_pemesanandetail',array('id_detailpesanan'=>$id));
 		redirect('pemesanan/get_pemesanan/'.$id_pesanan);						   
+	}
+	
+	function preview_pesanan($id){	
+		$data['data'] = $this->Pemesanan_act->get_pemesanan($id);
+		$data['data_detail'] = $this->Pemesanan_act->get_dtl_pemesanan($id)->result_array();
+		$data['data_pembayaran'] = $this->Pemesanan_act->get_dtl_pembayaran($id);
+		$data['list_kurir'] = $this->Kurir_act->get_kurir()->result_array();
+		$data['action'] = site_url().'/pemesanan/update_pemesanan/'.$id;
+		$data['kode_pengiriman'] = $this->BuatKode_Act->kode_pengiriman();
+//		$data['action_dtl'] = site_url().'/pemesanan/store_dtl_pemesanan';
+		$this->content = $this->load->view('pemesanan/preview_pesanan',$data,true);
+		$this->index();
+	}
+	function confirm_pesanan($id){
+		$this->Pemesanan_act->confirm_pesanan($id);
+		redirect('pemesanan/preview_pesanan/'.$id);
+	}	
+	function delivered_pesanan($id){
+		$this->Pemesanan_act->delivered_pesanan($id);
+		redirect('pemesanan/preview_pesanan/'.$id);
+	}
+	function cancel_pesanan($id){
+		$this->Pemesanan_act->cancel_pesanan($id);
+		redirect('pemesanan/preview_pesanan/'.$id);
+	}
+	function add_pengirim(){
+		$id_pesanan = $this->input->post('id_pesanan');
+		$this->Pengiriman_act->process_add();
+		$this->Pemesanan_act->update_stock($id_pesanan);
+		redirect('pemesanan/preview_pesanan/'.$id_pesanan);
 	}
 	
 }

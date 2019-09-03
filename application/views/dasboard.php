@@ -12,7 +12,7 @@
                         </div>
                         <div class="content">
                             <div class="text">NEW PRODUCT</div>
-                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?= $jumlah_produk;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="content">
                             <div class="text">NEW ORDER</div>
-                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?= $jumlah_new_order;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="content">
                             <div class="text">NEW SHIPPING</div>
-                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?= $jumlah_new_shipping;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -45,34 +45,19 @@
                         </div>
                         <div class="content">
                             <div class="text">NEW CUSTOMER</div>
-                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="number count-to" data-from="0" data-to="<?= $jumlah_new_customer;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- #END# Widgets -->
-            <!-- CPU Usage -->
-            
-            <!-- #END# CPU Usage -->
 
             <div class="row clearfix">
                 <!-- Task Info -->
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <h2>TASK INFOS</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <h2>TASK INFO PENGIRIMAN</h2>
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -80,70 +65,51 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Task</th>
-                                            <th>Status</th>
-                                            <th>Manager</th>
-                                            <th>Progress</th>
+                                            <th>ID Pengiriman</th>
+                                            <th>ID Pesanan</th>
+                                            <th>Kurir</th>
+                                            <th>Penerima</th>
+											<th>Alamat Penerima</th>
+											<th>Status</th>
+											<th>Progres</th>
                                         </tr>
-                                    </thead>
+                                    </thead>	
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Task A</td>
-                                            <td><span class="label bg-green">Doing</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="width: 62%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Task B</td>
-                                            <td><span class="label bg-blue">To Do</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Task C</td>
-                                            <td><span class="label bg-light-blue">On Hold</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-light-blue" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Task D</td>
-                                            <td><span class="label bg-orange">Wait Approvel</span></td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Task E</td>
-                                            <td>
-                                                <span class="label bg-red">Suspended</span>
-                                            </td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-red" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
+										<?php
+											if(count($list_shipping) > 0){
+												$no = 1;
+												foreach($list_shipping as $row){
+										?>
+											<tr>
+												<td><?= $no; ?></td>
+												<td><?= $row['id_pengiriman']; ?></td>
+												<td><?= $row['id_pesanan']; ?></td>
+												<td><?= $row['nama_kurir']; ?></td>
+												<td><?= $row['penerima']; ?></td>
+												<td><?= $row['alamat_penerima']; ?></td>
+												<td>
+												<?php
+												if($row['status'] == 'on_process'){
+													$style = "label bg-indigo";
+												}else if($row['status'] == 'delivered'){
+													$style = "label label-success";
+												}else if($row['status'] == 'cancel'){
+													$style = "label label-danger";
+												}
+												?>	
+												<span class="<?= $style;?>"><?= $row['status']?></span>
+												</td>
+												<td>
+													<div class="progress">
+														<div class="progress-bar bg-orange" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="width: 62%"></div>
+													</div>
+												</td>
+											</tr>
+										<?php
+												$no++;
+												}
+											}
+										?>
                                     </tbody>
                                 </table>
                             </div>
@@ -151,7 +117,73 @@
                     </div>
                 </div>
                 <!-- #END# Task Info -->
-                <!-- Browser Usage -->
-                <!-- #END# Browser Usage -->
+            </div>
+			<div class="row clearfix">
+                <!-- Task Info -->
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>TASK INFO PEMESANAN BARU</h2>
+                        </div>
+                        <div class="body">                            
+							<div class="table-responsive">
+                                <table class="table table-hover dashboard-task-infos">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ID Pesanan</th>
+                                            <th>Penerima</th>
+											<th>Alamat Penerima</th>
+											<th>Total pesanan</th>
+											<th>Status</th>
+											<th>Progres</th>
+                                        </tr>
+                                    </thead>	
+                                    <tbody>
+										<?php
+											if(count($list_pesanan) > 0){
+												$no = 1;
+												foreach($list_pesanan as $row){
+										?>
+											<tr>
+												<td><?= $no; ?></td>
+												<td><?= $row['id_pesanan']; ?></td>
+												<td><?= $row['penerima']; ?></td>
+												<td><?= $row['alamat_penerima']; ?></td>
+												<td><?= $row['total_harga']; ?></td>
+												<td>
+												<?php
+												if($row['status'] == 'on_process'){
+													$style = "label bg-indigo";
+												}else if($row['status'] == 'delivered'){
+													$style = "label label-success";
+												}else if($row['status'] == 'cancel'){
+													$style = "label label-danger";
+												}
+												?>	
+												<span class="<?= $style;?>"><?= $row['status']?></span>
+												</td>
+												<td>
+													<div class="progress">
+														<div class="progress-bar bg-green" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 62%"></div>
+													</div>
+												</td>
+											</tr>
+										<?php
+												$no++;
+												}
+											}else{
+												echo "<tr>
+												<td colspan='7'>Belum Ada Pesanan</td>
+												</tr>";
+											}
+										?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Task Info -->
             </div>
         </div>

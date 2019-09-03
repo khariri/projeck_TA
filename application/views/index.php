@@ -249,7 +249,7 @@
                     </li>
 					<li <?= ($this->uri->segment(1)=='report') ? 'class="active"' : '';?>>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
-                            <i class="material-icons">trending_down</i>
+                            <i class="material-icons">assessment</i>
                             <span>Laporan</span>
                         </a>
                         <ul class="ml-menu" style="display: block;">
@@ -381,6 +381,7 @@
     </section>
 
 {_footer_}
+
 
 </body>
 </html>

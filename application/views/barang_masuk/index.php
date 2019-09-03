@@ -51,6 +51,7 @@
                                         <tr>
 											<th>No</th>
                                             <th>Nama Barang</th>
+											<th>Tanggal Masuk</th>
 											<th>Jumlah</th>
                                             <th>Action</th>
                                         </tr>
@@ -63,16 +64,18 @@
 										?>
                                         <tr>
 											<td><?=$no;?></td>
-                                            <td><?= $value['nama_produk']?></td>
+                                            <td><?= $value['nama_produk'];?></td>
 											<td><?= $value['tgl_masuk']?></td>
 											<td><?= $value['jumlah']?></td>
                                             <td>													
 												<a href="<?= site_url()?>/pemasukan_barang/edit_pemasukan_barang/<?= $value['id']?>"><button type="button" class="btn btn-warning btn-xs waves-effect">
                                     				<i class="material-icons" title="Edit">create</i>
 												</button></a>
+<!--
 												<a href="#"><button type="button" class="btn btn-danger btn-xs waves-effect" onclick="confirmDel('<?=$value['id'];?>')">
                                     				<i class="material-icons" title="Delete">delete</i>
 												</button></a>
+-->
 											</td>
                                         </tr>
 										<?php

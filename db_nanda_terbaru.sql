@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2019 at 10:38 AM
+-- Generation Time: Sep 03, 2019 at 02:09 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -46,7 +46,29 @@ CREATE TABLE IF NOT EXISTS `tb_administrator` (
 --
 
 INSERT INTO `tb_administrator` (`id_admin`, `nama_admin`, `username_admin`, `pass_admin`, `notlp_admin`, `email_admin`, `alamat_admin`, `kodepos_admin`, `kota_admin`, `prov_admin`, `noktp_admin`) VALUES
-('ADM-0001', 'asuu', '121', '121', 12123, 'khariri@gmail.com', 'pass', 123, '12121', '121211', 121212);
+('1', 'admin', 'admin', 'admin', 21, 'admin@gmail.com', '-', 910, '-', 'Jakarta', 91292002);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_barang_masuk`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_barang_masuk` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produk` varchar(30) NOT NULL,
+  `tgl_masuk` date DEFAULT NULL,
+  `jumlah` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `tb_barang_masuk`
+--
+
+INSERT INTO `tb_barang_masuk` (`id`, `id_produk`, `tgl_masuk`, `jumlah`) VALUES
+(7, 'PRD-0002', '2019-09-01', 2),
+(8, 'PRD-0001', '2019-09-03', 10);
 
 -- --------------------------------------------------------
 
@@ -66,7 +88,8 @@ CREATE TABLE IF NOT EXISTS `tb_biayakirim` (
 --
 
 INSERT INTO `tb_biayakirim` (`id_ongkir`, `kota_kirim`, `biaya`) VALUES
-('BYK-0001', 'Indrmayu', 123121);
+('BYK-0001', 'Indrmayu', 1000),
+('BYK-0002', 'Cirebon', 2000);
 
 -- --------------------------------------------------------
 
@@ -87,7 +110,8 @@ CREATE TABLE IF NOT EXISTS `tb_kategori` (
 
 INSERT INTO `tb_kategori` (`id_kategori`, `nama_kategori`, `stok`) VALUES
 ('KTG-0001', 'AB', NULL),
-('KTG-0002', 'BC', NULL);
+('KTG-0002', 'BC', NULL),
+('KTG-0003', 'ghgg', NULL);
 
 -- --------------------------------------------------------
 
@@ -112,8 +136,8 @@ CREATE TABLE IF NOT EXISTS `tb_kurir` (
 --
 
 INSERT INTO `tb_kurir` (`id_kurir`, `nama_kurir`, `notlp_kurir`, `username_kurir`, `pass_kurir`, `alamat_kurir`, `jeniskel_kurir`, `noktp_kurir`) VALUES
-('1233', 'sdad', 1221321, 'qq', 'qq', 'cfddf', 'Perempuan', 121),
-('KUR-1234', 'qqq', 22121, '123', '123', 'saas', '', 11212);
+('1233', 'Bambang', 1221321, 'qq', 'qq', 'cfddf', 'Laki Laki', 121),
+('KUR-1234', 'Agus', 22121, '123', '123', 'saas', '', 11212);
 
 -- --------------------------------------------------------
 
@@ -145,11 +169,18 @@ CREATE TABLE IF NOT EXISTS `tb_pembayaran` (
   `id_pembayaran` varchar(30) NOT NULL,
   `tgl_bayar` date NOT NULL,
   `jam_bayar` time NOT NULL,
-  `biaya_ongkir` int(11) NOT NULL,
-  `id_produk` varchar(30) NOT NULL,
+  `id_pesanan` varchar(30) DEFAULT NULL,
+  `jumlah_bayar` int(11) DEFAULT '0',
   PRIMARY KEY (`id_pembayaran`),
-  UNIQUE KEY `id_produk` (`id_produk`)
+  UNIQUE KEY `id_produk` (`id_pesanan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pembayaran`
+--
+
+INSERT INTO `tb_pembayaran` (`id_pembayaran`, `tgl_bayar`, `jam_bayar`, `id_pesanan`, `jumlah_bayar`) VALUES
+('BYR-0001', '2019-09-03', '12:00:00', 'INV-0011', 1400);
 
 -- --------------------------------------------------------
 
@@ -160,22 +191,29 @@ CREATE TABLE IF NOT EXISTS `tb_pembayaran` (
 CREATE TABLE IF NOT EXISTS `tb_pemesanan` (
   `id_pesanan` varchar(30) NOT NULL,
   `tgl_pesanan` date NOT NULL,
-  `harga_pesanan` double NOT NULL,
+  `total_harga` double NOT NULL,
   `penerima` varchar(50) NOT NULL,
-  `id_pengiriman` varchar(30) NOT NULL,
-  `id_penerima` varchar(30) NOT NULL,
-  `id_ongkir` varchar(30) NOT NULL,
-  `id_pembayaran` varchar(30) NOT NULL,
-  `id_pelanggan` varchar(30) NOT NULL,
-  `id_kurir` varchar(30) NOT NULL,
+  `alamat_penerima` text,
+  `id_pengiriman` varchar(30) DEFAULT NULL,
+  `id_ongkir` varchar(30) DEFAULT NULL,
+  `id_pembayaran` varchar(30) DEFAULT NULL,
+  `id_pelanggan` varchar(30) DEFAULT NULL,
+  `id_kurir` varchar(30) DEFAULT NULL,
+  `status` enum('draft','confirm','on_process','delivered','cancel') DEFAULT 'draft',
   PRIMARY KEY (`id_pesanan`),
-  UNIQUE KEY `id_pembeli` (`id_penerima`),
-  UNIQUE KEY `id_ongkir` (`id_ongkir`),
-  UNIQUE KEY `id_pembayaran` (`id_pembayaran`),
-  UNIQUE KEY `id_pelanggan` (`id_pelanggan`),
   UNIQUE KEY `id_kurir` (`id_kurir`),
+  UNIQUE KEY `id_pelanggan` (`id_pelanggan`),
+  UNIQUE KEY `id_pembayaran` (`id_pembayaran`),
+  UNIQUE KEY `id_ongkir` (`id_ongkir`),
   UNIQUE KEY `id_pengiriman` (`id_pengiriman`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pemesanan`
+--
+
+INSERT INTO `tb_pemesanan` (`id_pesanan`, `tgl_pesanan`, `total_harga`, `penerima`, `alamat_penerima`, `id_pengiriman`, `id_ongkir`, `id_pembayaran`, `id_pelanggan`, `id_kurir`, `status`) VALUES
+('INV-0011', '2019-09-03', 1400, 'Mas Boy', 'Jl. jalan jalan', '', 'BYK-0001', NULL, NULL, '1233', 'on_process');
 
 -- --------------------------------------------------------
 
@@ -184,38 +222,21 @@ CREATE TABLE IF NOT EXISTS `tb_pemesanan` (
 --
 
 CREATE TABLE IF NOT EXISTS `tb_pemesanandetail` (
-  `id_detailpesanan` varchar(30) NOT NULL,
-  `id_pembayaran` varchar(30) NOT NULL,
+  `id_detailpesanan` int(11) NOT NULL AUTO_INCREMENT,
   `jumlah` double NOT NULL,
   `id_pesanan` varchar(30) NOT NULL,
   `subtotal` int(100) NOT NULL,
   `id_produk` varchar(30) NOT NULL,
-  PRIMARY KEY (`id_detailpesanan`),
-  UNIQUE KEY `id_pembayaran` (`id_pembayaran`),
-  UNIQUE KEY `id_pesanan` (`id_pesanan`),
-  UNIQUE KEY `id_produk` (`id_produk`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  PRIMARY KEY (`id_detailpesanan`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
--- Table structure for table `tb_penerima`
+-- Dumping data for table `tb_pemesanandetail`
 --
 
-CREATE TABLE IF NOT EXISTS `tb_penerima` (
-  `id_penerima` varchar(30) NOT NULL,
-  `id_pelanggan` varchar(30) NOT NULL,
-  `nama_penerima` varchar(100) NOT NULL,
-  `alamat_penerima` varchar(100) NOT NULL,
-  `kode_pos` int(10) NOT NULL,
-  `id_ongkir` varchar(30) NOT NULL,
-  `kota_penerima` text NOT NULL,
-  `notlp_penerima` int(15) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_penerima`),
-  UNIQUE KEY `id_pelanggan` (`id_pelanggan`),
-  UNIQUE KEY `id_ongkir` (`id_ongkir`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `tb_pemesanandetail` (`id_detailpesanan`, `jumlah`, `id_pesanan`, `subtotal`, `id_produk`) VALUES
+(19, 2, 'INV-0011', 200, 'PRD-0001'),
+(20, 2, 'INV-0011', 200, 'PRD-0001');
 
 -- --------------------------------------------------------
 
@@ -226,13 +247,19 @@ CREATE TABLE IF NOT EXISTS `tb_penerima` (
 CREATE TABLE IF NOT EXISTS `tb_pengiriman` (
   `id_pengiriman` varchar(30) NOT NULL,
   `id_kurir` varchar(30) NOT NULL,
-  `alamat` varchar(50) NOT NULL,
-  `status` bit(5) NOT NULL,
-  `id_pesanan` int(11) NOT NULL,
+  `status` enum('on_process','delivered') DEFAULT 'on_process',
+  `id_pesanan` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id_pengiriman`),
   UNIQUE KEY `id_kurir` (`id_kurir`),
   UNIQUE KEY `id_pesanan` (`id_pesanan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pengiriman`
+--
+
+INSERT INTO `tb_pengiriman` (`id_pengiriman`, `id_kurir`, `status`, `id_pesanan`) VALUES
+('KRM-0001', '1233', 'on_process', 'INV-0011');
 
 -- --------------------------------------------------------
 
@@ -249,9 +276,16 @@ CREATE TABLE IF NOT EXISTS `tb_produk` (
   `des_produk` text NOT NULL,
   `terjual` int(50) NOT NULL,
   `size` varchar(10) NOT NULL,
-  PRIMARY KEY (`id_produk`),
-  UNIQUE KEY `id_kategori` (`id_kategori`)
+  PRIMARY KEY (`id_produk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_produk`
+--
+
+INSERT INTO `tb_produk` (`id_produk`, `id_kategori`, `nama_produk`, `stok_produk`, `harga_produk`, `des_produk`, `terjual`, `size`) VALUES
+('PRD-0001', '', 'Leptop', 6, 100, 'des', 4, ''),
+('PRD-0002', '', 'Mouse', 2, 2000, '---', 0, '');
 
 -- --------------------------------------------------------
 

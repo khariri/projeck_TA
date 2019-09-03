@@ -8,7 +8,7 @@
                             </h2>
                         </div>
                         <div class="body">
-                            <form action="<?=$action?>" method="post">
+                            <form action="<?=$action?>" method="get">
                                 <div class="row clearfix">
 									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  form-control-label">
 										<label for="SD">Periode  :</label>
@@ -25,7 +25,7 @@
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-5">
                                         <div class="form-group">
 											<div class="input-group form-line date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-												<input class="form-control" size="10" type="text" name="tgl_ahir" placeholder="Sampai ..">
+												<input class="form-control" size="10" type="text" name="tgl_akhir" placeholder="Sampai ..">
 								 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 											</div>
 										</div>
@@ -39,9 +39,13 @@
                         </div>
 						<div class="body">
 							<?php 
-									if(isset($data)){
+								if(isset($data)){
 							?>
-							<div class="table-responsive">	
+							<ol class="breadcrumb breadcrumb-bg-orange">
+                                <li><a href="javascript:void(0);">Report</a></li>
+                                <li class="active">Transaksi Penjualan</li>
+                            </ol>
+								<div class="table-responsive">	
 								<table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -49,18 +53,22 @@
                                         <th>Tanggal Pesanan</th>
                                         <th>Penerima</th>
 										<th>Alamat Penerima</th>
+										<th>Kurir</th>
+										<th>status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 									<?php
 										$no = 1;
-										foreach($data->result_array() as $data_dtl){									
+										foreach($data as $row){									
 										?>
 										<tr>
-											<th scope="row"><?= $data['id_pesanan'] ;?></th>
-											<td><?= $data['tgl_pesanan']; ?></td>
-											<td><?= $data['penerima'];?></td>
-											<td><?= $data['alamat_penerima'];?></td>
+											<td><?= $row['id_pesanan'] ;?></td>
+											<td><?= $row['tgl_pesanan']; ?></td>
+											<td><?= $row['penerima'];?></td>
+											<td><?= $row['alamat_penerima'];?></td>
+											<td><?= $row['nama_kurir'];?></td>
+											<td><?= $row['status'];?></td>
 										</tr>
 										<?php 
 											$no++;
@@ -69,8 +77,8 @@
                                 </tbody>
                             	</table>								
                             </div>
-						<?php
-							} //tutup isset
+							<?php
+								} //tutup isset
 							?>
                         </div>
 						</div>

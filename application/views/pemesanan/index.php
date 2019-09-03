@@ -40,10 +40,12 @@
 								echo '}, 1000);</script>';
 							}
                         	?>
+<!--
 							<p><a href="<?= site_url()?>/pemesanan/add_pemesanan"><button type="button" class="btn btn-success waves-effect">
                                     <i class="material-icons">add_box</i>
                                     <span>Tambah Data</span>
 							</button></a></p>
+-->
 							<br>
                             <div class="table-responsive">								
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -53,7 +55,9 @@
                                             <th>ID Pemesanan</th>
 											<th>Tgl Pemesanan</th>
 											<th>Penerima</th>
-                                            <th>Action</th>
+											<th>Alamat Penerima</th>
+											<th>Status</th>
+                                            <th>&nbsp;</th>
                                         </tr>
                                     </thead>                                    
                                     <tbody>
@@ -67,15 +71,32 @@
                                             <td><?= $value['id_pesanan']?></td>
 											<td><?= $value['tgl_pesanan']?></td>
 											<td><?= $value['penerima']?></td>
+											<td><?= $value['alamat_penerima']?></td>
+											<td>
+											<?php
+											if($value['status'] == 'draft'){
+												$style = "label label-warning";
+											}else if($value['status'] == 'confirm'){
+												$style = "label label-primary";
+											}else if($value['status'] == 'on_process'){
+												$style = "label bg-indigo";
+											}else if($value['status'] == 'delivered'){
+												$style = "label label-success";
+											}else if($value['status'] == 'cancel'){
+												$style = "label label-danger";
+											}
+											?>	
+											<span class="<?= $style;?>"><?= $value['status']?></span>
+											</td>
                                             <td>													
-<!--
-												<a href="<?= site_url()?>/kategori/edit_kategori/<?= $value['id_kategori']?>"><button type="button" class="btn btn-warning btn-xs waves-effect">
-                                    				<i class="material-icons" title="Edit">create</i>
+												<a href="<?= site_url()?>/pemesanan/preview_pesanan/<?= $value['id_pesanan']?>"><button type="button" class="btn btn-primary btn-xs waves-effect">
+                                    				<i class="material-icons" title="preview">visibility</i>
 												</button></a>
--->
+<!--
 												<a href="#"><button type="button" class="btn btn-danger btn-xs waves-effect" onclick="confirmDel('<?=$value['id_pesanan'];?>')">
                                     				<i class="material-icons" title="Delete">delete</i>
 												</button></a>
+-->
 											</td>
                                         </tr>
 										<?php

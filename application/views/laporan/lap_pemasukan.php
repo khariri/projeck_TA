@@ -41,10 +41,15 @@
 							<?php 
 									if(isset($data)){
 							?>
+							<ol class="breadcrumb breadcrumb-bg-orange">
+                                <li><a href="javascript:void(0);">Report</a></li>
+                                <li class="active">Pemasukan Stock Baru</li>
+                            </ol>
 							<div class="table-responsive">	
 								<table class="table table-striped">
                                 <thead>
                                     <tr>
+										<th>ID Produk</th>
                                         <th>Nama Produk</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Jumlah</th>
@@ -56,7 +61,8 @@
 										foreach($data->result_array() as $data_dtl){									
 										?>
 										<tr>
-											<th scope="row"><?= $data['nama_produk'] ;?></th>
+											<td><?= $data_dtl['id_produk'];?></td>
+											<td><?= $data_dtl['nama_produk'];?></td>
 											<td><?= $data_dtl['tgl_masuk']; ?></td>
 											<td><?= $data_dtl['jumlah'];?></td>
 										</tr>

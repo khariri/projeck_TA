@@ -52,6 +52,8 @@ class Pemasukan_barang extends CI_Controller {
 		redirect('pemasukan_barang/v_pemasukan_barang');
 	}
 	function update_pemasukan_barang($id){
+//		$res['1']=$this->input->post('id_produk');
+//		return print_r($res);
 		$return = $this->Pemasukan_barang_act->process_update($id);
 		if($return){
 			$data = "success";
