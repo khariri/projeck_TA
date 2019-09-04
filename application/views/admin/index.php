@@ -51,7 +51,7 @@
                                         <tr>
 											<th>Id Admin</th>
                                             <th>Nama</th>
-											<th>No Ktp</th>
+											<th>No KTP</th>
                                             <th>Email</th>
 											<th>Action</th>
                                         </tr>

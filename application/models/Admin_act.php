@@ -6,7 +6,7 @@ class Admin_act extends CI_Model {
 	public function get_admin($id = ""){
 //		$id_sekolah = $this->session->userdata('id_sekolah');
 		if($id == ""){			
-			$data = $this->db->get('tb_administrator');						 
+			$data = $this->db->get_where('tb_administrator',array('role'=>'admin'));						 
 		}else{
 			$data = $this->db->where('id_admin',$id)
 							  ->get('tb_administrator')

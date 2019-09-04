@@ -18,10 +18,14 @@ class Login_act extends CI_Model {
 		if($query_cek->num_rows() > 0){
 			$username = $query_cek->row()->username_admin;
 			$nama_admin = $query_cek->row()->nama_admin;
+			$email_admin = $query_cek->row()->email_admin;
+			$role = $query_cek->row()->role;
 //			$logo = $query_cek->row()->logo;			
 			$sess = array('username' => $username,
 						  'nama_admin' => $nama_admin,
-						  'LOGGED' => 'LOGGED'
+						  'email_admin' => $email_admin,
+						  'LOGGED' => 'LOGGED',
+						  'ROLE' => $role,
 						 );						  
 			$this->session->set_userdata($sess);
 //			redirect(base_url());

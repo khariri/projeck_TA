@@ -45,11 +45,12 @@
                                 <tbody>
 									<tr class="bg-green">
 										<th>&nbsp;</th>
-                                        <th colspan="3">List Produk</th>
+                                        <th colspan="4">List Produk</th>
                                     </tr>
                                     <tr>
                                         <th width="2%">No</th>
-                                        <th width="58%">Nama product</th>
+                                        <th width="40%">Nama produk</th>
+										<th width="18">Harga satuan</th>
                                         <th width="10%">Jumlah</th>
                                         <th width="30%">Subtotal</th>
                                     </tr>
@@ -61,6 +62,7 @@
 										<tr>
 											<th scope="row"><?= $no ;?></th>
 											<td><?= $data_dtl['nama_produk']; ?></td>
+											<td><?= $data_dtl['harga_produk']; ?></td>
 											<td><?= $data_dtl['jumlah'];?></td>
 											<th>Rp. <?= $data_dtl['subtotal'];?></th>
 										</tr>
@@ -71,10 +73,12 @@
 										<tr>
 											<td>&nbsp;</td>
 											<td>&nbsp;</td>
+											<td>&nbsp;</td>
 											<td>Biaya kirim</td>
 											<th>Rp. <?= $data['biaya'];?></th>
 										</tr>
 										<tr>
+											<td>&nbsp;</td>
 											<td>&nbsp;</td>
 											<td>&nbsp;</td>
 											<th scope="row"><h3>Total</h3></th>

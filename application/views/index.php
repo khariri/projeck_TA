@@ -46,113 +46,7 @@
                     <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
                     <!-- #END# Call Search -->
                     <!-- Notifications -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="material-icons">notifications</i>
-                            <span class="label-count">7</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">NOTIFICATIONS</li>
-                            <li class="body">
-                                <ul class="menu">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-light-green">
-                                                <i class="material-icons">person_add</i>
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4>12 new members joined</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> 14 mins ago
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-cyan">
-                                                <i class="material-icons">add_shopping_cart</i>
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4>4 sales made</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> 22 mins ago
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-red">
-                                                <i class="material-icons">delete_forever</i>
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4><b>Nancy Doe</b> deleted account</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> 3 hours ago
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-orange">
-                                                <i class="material-icons">mode_edit</i>
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4><b>Nancy</b> changed name</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> 2 hours ago
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-blue-grey">
-                                                <i class="material-icons">comment</i>
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4><b>John</b> commented your post</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> 4 hours ago
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-light-green">
-                                                <i class="material-icons">cached</i>
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4><b>John</b> updated status</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> 3 hours ago
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-purple">
-                                                <i class="material-icons">settings</i>
-                                            </div>
-                                            <div class="menu-info">
-                                                <h4>Settings updated</h4>
-                                                <p>
-                                                    <i class="material-icons">access_time</i> Yesterday
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="footer">
-                                <a href="javascript:void(0);">View All Notifications</a>
-                            </li>
-                        </ul>
-                    </li>
+
                     <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
                 </ul>
             </div>
@@ -168,14 +62,12 @@
                     <img src="<?= base_url()?>assets/images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">MASBOY</div>
-                    <div class="email">masboy@ganteng.com</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $this->session->userdata('nama_admin'); ?></div>
+                    <div class="email"><?= $this->session->userdata('email_admin'); ?></div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
                             <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
                             <li role="seperator" class="divider"></li>
                             <li><a href="<?=site_url()?>/login/logout"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
@@ -185,8 +77,7 @@
             <!-- #User Info -->
             <!-- Menu -->
             <div class="menu">
-                <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
+                <ul class="list">                    
                     <li <?= ($this->uri->segment(1)=='' || $this->uri->segment(1)=='login') ? 'class="active"' : '';?>>
                         <a href="<?= site_url(); ?>">
                             <i class="material-icons">home</i>
@@ -199,34 +90,61 @@
                             <span>Pemasukan Barang</span>
                         </a>
                     </li>
+<!--
                     <li <?= ($this->uri->segment(1)=='kategori') ? 'class="active"' : '';?>>
                         <a href="<?=site_url()?>/kategori/v_kategori">
                             <i class="material-icons">apps</i>
                             <span>Kategori</span>
                         </a>
                     </li>
+-->
+<!--
 					<li <?= ($this->uri->segment(1)=='kurir') ? 'class="active"' : '';?>>
                         <a  href="<?=site_url()?>/kurir/v_kurir">
                             <i class="material-icons">directions_run</i>
                             <span>Kurir</span>
                         </a>
                     </li>
+-->
+<!--
 					<li <?= ($this->uri->segment(1)=='ongkir') ? 'class="active"' : '';?>>
                         <a href="<?=site_url()?>/ongkir/v_ongkir">
                             <i class="material-icons">monetization_on</i>
                             <span>Biaya Kirim</span>
                         </a>
                     </li>
+-->
+<!--
 					<li <?= ($this->uri->segment(1)=='produk') ? 'class="active"' : '';?>>
                         <a href="<?=site_url()?>/produk/v_produk">
                             <i class="material-icons">assignment</i>
                             <span>Produk</span>
                         </a>
                     </li>
+-->
+<!--
 					<li <?= ($this->uri->segment(1)=='admin') ? 'class="active"' : '';?>>
                         <a href="<?=site_url()?>/admin/v_admin">
                             <i class="material-icons">account_circle</i>
                             <span>Admin</span>
+                        </a>
+                    </li>
+-->
+					<!--
+					<li <?= ($this->uri->segment(1)=='pelanggan') ? 'class="active"' : '';?>>
+                        <a href="<?=site_url();?>/pelanggan/v_pelanggan">
+                            <i class="material-icons">group</i>
+                            <span>Pelanggan</span>
+                        </a>
+                    </li>
+-->
+					<?php
+					if($this->session->userdata('ROLE') == 'admin'){
+					?>
+					<li <?= ($this->uri->segment(1)=='pembayaran') ? 'class="active"' : '';?>>
+                        <a href="<?=site_url()?>/pembayara/v_pembayaran">
+                            <i class="material-icons">monetization_on</i>
+                            <span>Pembayaran</span>
                         </a>
                     </li>
                     <li <?= ($this->uri->segment(1)=='pemesanan') ? 'class="active"' : '';?>>
@@ -241,12 +159,64 @@
                             <span>Pengiriman</span>
                         </a>
                     </li>
-					<li <?= ($this->uri->segment(1)=='pelanggan') ? 'class="active"' : '';?>>
-                        <a href="<?=site_url();?>/pelanggan/v_pelanggan">
-                            <i class="material-icons">group</i>
-                            <span>Pelanggan</span>
+					<?php
+					}
+					?>
+					<li <?= ($this->uri->segment(1)=='kategori' || $this->uri->segment(1)=='produk' || $this->uri->segment(1)=='ongkir') ? 'class="active"' : '';?>>
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
+                            <i class="material-icons">assignment</i>
+                            <span>Master</span>
                         </a>
+                        <ul class="ml-menu" style="display: block;">
+                            <li>
+								<a href="<?=site_url()?>/kategori/v_kategori" class=" waves-effect waves-block">
+									<span>Master Kategori Produk</span>
+								</a>
+							</li>
+							<li>
+								<a href="<?=site_url()?>/produk/v_produk" class=" waves-effect waves-block">
+									<span>Master Produk</span>
+								</a>
+							</li>
+							<li>
+                                <a href="<?=site_url()?>/ongkir/v_ongkir" class=" waves-effect waves-block">
+									<span>Master Biaya Kirim</span>
+								</a>
+                            </li>
+                        </ul>
                     </li>
+					<li <?= ($this->uri->segment(1)=='kurir' || $this->uri->segment(1)=='pelanggan' || $this->uri->segment(1)=='admin') ? 'class="active"' : '';?>>
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
+                            <i class="material-icons">group</i>
+                            <span>User</span>
+                        </a>
+                        <ul class="ml-menu" style="display: block;">
+                            <li>
+								<a  href="<?=site_url()?>/kurir/v_kurir">
+									<span>Kurir</span>
+								</a>
+							</li>
+							<li>
+								<a href="<?=site_url();?>/pelanggan/v_pelanggan">
+									<span>Pelanggan</span>
+								</a>
+							</li>
+							<?php
+							if($this->session->userdata('ROLE') == 'pemilik'){
+							?>
+							<li>
+                                <a href="<?=site_url()?>/admin/v_admin">
+									<span>Admin</span>
+								</a>
+                            </li>
+							<?php
+							}
+							?>
+                        </ul>
+                    </li>
+					<?php
+					if($this->session->userdata('ROLE') == 'pemilik'){
+					?>
 					<li <?= ($this->uri->segment(1)=='report') ? 'class="active"' : '';?>>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block toggled">
                             <i class="material-icons">assessment</i>
@@ -265,6 +235,9 @@
                             </li>
                         </ul>
                     </li>
+					<?php
+					}
+					?>
                 </ul>
             </div>
             <!-- #Menu -->

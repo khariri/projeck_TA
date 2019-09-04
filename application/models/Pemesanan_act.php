@@ -20,7 +20,7 @@ class Pemesanan_act extends CI_Model {
 	public function get_dtl_pemesanan($id){
 //		$data = $this->db->where('id_pesanan',$id)
 //						 ->get('tb_pemesanandetail');
-		$query = "SELECT a.*,b.nama_produk FROM tb_pemesanandetail a, tb_produk b WHERE a.id_produk=b.id_produk AND a.id_pesanan = '$id'";
+		$query = "SELECT a.*,b.nama_produk,b.harga_produk FROM tb_pemesanandetail a, tb_produk b WHERE a.id_produk=b.id_produk AND a.id_pesanan = '$id'";
 		$data = $this->db->query($query);
 		return $data;
 	}
